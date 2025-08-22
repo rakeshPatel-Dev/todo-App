@@ -1,0 +1,267 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #2b0268;
+  color: #ffffff;
+}
+
+.cursor {
+  height: 30vh;
+  width: 30vh;
+  background-color: #3a218b;
+  filter: blur(50px);
+  border-radius: 50%;
+  position: absolute; /* stays inside .todo-app */
+  pointer-events: none; /* so clicks pass through */
+  transform: translate(-50%, -50%);
+  display: none; /* hidden until mouse enters */
+  z-index: -1;
+}
+
+.todo-app {
+  height: auto;
+  position: relative;
+  width: 60vw;
+  top: 20%;
+  margin-top: 5vw;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2vw;
+  overflow: hidden;
+  box-shadow: 0 0px 20px rgb(18, 18, 54);
+  border-radius: 2rem;
+}
+.todo-app::before {
+  content: "";
+  border-radius: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0); /* semi-transparent */
+  -webkit-backdrop-filter: blur(10px); /* for Safari */
+  backdrop-filter: blur(10px); /* blur whatever is behind */
+  box-shadow: 0 0px 20px rgb(159, 159, 185);
+  /* border: 1px solid rgba(255, 255, 255, 0.3);  */
+  z-index: -1;
+}
+.todo-app h1 {
+  color: #ffffff;
+  text-align: center;
+  font-size: 3vw;
+  font-weight: 700;
+  border-bottom: 1px solid #dadada;
+  padding: 1rem;
+}
+.app-container {
+  /* background-color: #fff; */
+  position: relative;
+  height: auto;
+  padding: 1vw;
+}
+
+/* form {
+  border-bottom: 1px solid #dadada;
+  margin-bottom: 2rem;
+  height: 15vh;
+} */
+
+.input-container {
+  height: 4vw;
+  width: 100%;
+  /* background: #912323; */
+  /* border: 1px solid #dadada7e; */
+  box-shadow: 0 0 10px rgb(18, 18, 54);
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+form input {
+  padding: 1rem 2rem;
+  background: transparent;
+  outline: none;
+  border: none;
+  color: rgb(255, 255, 255);
+  font-size: clamp(0.5rem, 3vw, 1rem);
+  width: 80%;
+}
+form input:focus {
+  border: 1px solid #dadada;
+  /* box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.247); */
+  border: none;
+}
+
+form button {
+  border: none;
+  outline: none;
+  background: transparent;
+  height: 4vw;
+  border-left: 1px solid #dadada7e;
+  border-right: 1px solid #dadada7e;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  font-size: clamp(0.5rem, 1vw, 1rem);
+  color: white;
+  margin-left: 1rem;
+  box-shadow: 0 0 20px rgb(18, 18, 54);
+  transition: all ease 0.3s;
+}
+form button:active {
+  transform: scale(0.9);
+  border: 1px solid #dadada;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.247);
+}
+
+.task-list {
+  background-color: #090d3f2d;
+  padding: 1rem;
+  border-radius: 2rem;
+  /* border: 1px solid #dadada7e; */
+  margin-top: 2rem;
+  height: 40vh;
+  overflow-y: auto;
+}
+
+.task-list::-webkit-scrollbar {
+  display: none;
+}
+
+.task-items {
+  background-color: #160549;
+  padding: 1rem 2rem;
+  display: flex; /* FIX: make them show */
+  border-radius: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem; /* spacing between tasks */
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.task-items:hover {
+  transform: translateY(-2px);
+  background-color: #1e0661;
+  border: 1px solid #dadada7e;
+}
+
+/* wrapper */
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+  padding: 0 1rem;
+}
+
+/* keep input accessible but invisible */
+.cb {
+  position: absolute; /* keep it in flow for focus/keyboard */
+  opacity: 0;
+  width: 20px;
+  height: 20px; /* give it size so it’s focusable */
+}
+
+/* the visual box */
+.box {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 0.5rem;
+  border: 2px solid #dadada7e;
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+  position: relative;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+/* focus ring */
+.cb:focus-visible + .box {
+  outline: 2px solid #8ab4f8;
+  outline-offset: 3px;
+}
+
+/* checked state */
+.cb:checked + .box {
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
+/* checkmark */
+.box::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 5px;
+  width: 6px;
+  height: 10px;
+  border: solid #0b0d34;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+.cb:checked + .box::after {
+  transform: rotate(45deg) scale(1);
+}
+.task-items:has(.cb:checked) .task-heading {
+  text-decoration: line-through;
+  color: #aaaaaa83;
+}
+
+.task-items:has(.cb:checked) {
+  background-color: #110b2c;
+}
+
+.task-heading {
+  flex: 1; /* let it grow */
+  margin-left: 1rem;
+  font-size: 1.2rem;
+  word-break: break-word;
+}
+
+.delete-btn {
+  cursor: pointer;
+  color: #ff6b6b;
+  transition: transform 0.2s ease, color 0.2s ease;
+  transform: scale(1.3);
+}
+
+.delete-btn:hover {
+  color: #ff3b3b;
+  transform: scale(1.8);
+}
+i {
+  margin: 0 1rem;
+}
+.editBtn {
+  color: rgb(110, 110, 190);
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+  transform: scale(1.3);
+}
+
+.editBtn:hover {
+  color: rgb(187, 187, 219);
+  transform: scale(1.8);
+}
+
+.message {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 6rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
