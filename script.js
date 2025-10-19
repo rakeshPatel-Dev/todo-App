@@ -18,6 +18,7 @@ function renderTasks() {
   const tasks = getTasks();
 
   if (tasks.length === 0) {
+    message.textContent = "No task added yet!";
     message.style.display = "block";
   } else {
     message.style.display = "none";
@@ -27,6 +28,7 @@ function renderTasks() {
   }
 }
 renderTasks();
+
 
 // -------- Create Task Element --------
 function createTaskElement(taskHeading, completed = false) {

@@ -5,128 +5,119 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #2b0268;
-  color: #ffffff;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  background: radial-gradient(circle at top, #0a0a0a, #000);
+  color: #f1f1f1;
+  overflow: hidden;
+  height: 100dvh;
+}
+
+.info {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #555;
+  font-weight: 500;
+  font-size: medium;
 }
 
 .cursor {
   height: 30vh;
   width: 30vh;
-  background-color: #3a218b;
+  background-color: rgba(255, 255, 255, 0.3);
   filter: blur(50px);
   border-radius: 50%;
-  position: absolute; /* stays inside .todo-app */
-  pointer-events: none; /* so clicks pass through */
+  position: absolute;
+  pointer-events: none;
   transform: translate(-50%, -50%);
-  display: none; /* hidden until mouse enters */
+  display: none;
   z-index: -1;
 }
 
 .todo-app {
-  height: auto;
-  position: relative;
-  width: 60vw;
-  top: 20%;
-  margin-top: 5vw;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 2vw;
   overflow: hidden;
-  box-shadow: 0 0px 20px rgb(18, 18, 54);
-  border-radius: 2rem;
-}
-.todo-app::before {
-  content: "";
-  border-radius: 2rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: relative;
 
-  /* Glass effect */
-  background: rgba(255, 255, 255, 0); /* semi-transparent */
-  -webkit-backdrop-filter: blur(10px); /* for Safari */
-  backdrop-filter: blur(10px); /* blur whatever is behind */
-  box-shadow: 0 0px 20px rgb(159, 159, 185);
-  /* border: 1px solid rgba(255, 255, 255, 0.3);  */
-  z-index: -1;
+  width: 60vw;
+  margin: 6vw auto;
+  padding: 2vw;
+  border-radius: 2rem;
+  border: 1px solid #444;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.08);
+  background: rgba(20, 20, 20, 0.6);
 }
+
 .todo-app h1 {
   color: #ffffff;
   text-align: center;
   font-size: 3vw;
   font-weight: 700;
-  border-bottom: 1px solid #dadada;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   padding: 1rem;
 }
+
 .app-container {
-  /* background-color: #fff; */
   position: relative;
   height: auto;
   padding: 1vw;
 }
 
-/* form {
-  border-bottom: 1px solid #dadada;
-  margin-bottom: 2rem;
-  height: 15vh;
-} */
-
 .input-container {
-  height: 4vw;
+  /* height: 4vw; */
   width: 100%;
-  /* background: #912323; */
-  /* border: 1px solid #dadada7e; */
-  box-shadow: 0 0 10px rgb(18, 18, 54);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
   border-radius: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid #444;
+}
+
+.input-container:focus-within {
+  background-color: #222;
 }
 
 form input {
-  padding: 1rem 2rem;
+  padding: 1.3rem 2rem;
   background: transparent;
   outline: none;
   border: none;
-  color: rgb(255, 255, 255);
-  font-size: clamp(0.5rem, 3vw, 1rem);
+  color: #f9f9f9;
+  font-size: clamp(0.8rem, 3vw, 1rem);
   width: 80%;
-}
-form input:focus {
-  border: 1px solid #dadada;
-  /* box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.247); */
-  border: none;
 }
 
 form button {
   border: none;
   outline: none;
   background: transparent;
-  height: 4vw;
-  border-left: 1px solid #dadada7e;
-  border-right: 1px solid #dadada7e;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   border-radius: 2rem;
   font-size: clamp(0.5rem, 1vw, 1rem);
-  color: white;
-  margin-left: 1rem;
-  box-shadow: 0 0 20px rgb(18, 18, 54);
-  transition: all ease 0.3s;
+  color: #ffffff;
+  margin-right: 0.5vw;
+  transition: all ease 0.2s;
+  cursor: pointer;
+  box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3);
 }
+
+form button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 form button:active {
   transform: scale(0.9);
-  border: 1px solid #dadada;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.247);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .task-list {
-  background-color: #090d3f2d;
+  background-color: rgba(255, 255, 255, 0.04);
   padding: 1rem;
   border-radius: 2rem;
-  /* border: 1px solid #dadada7e; */
   margin-top: 2rem;
   height: 40vh;
   overflow-y: auto;
@@ -137,22 +128,22 @@ form button:active {
 }
 
 .task-items {
-  background-color: #160549;
+  background-color: rgba(255, 255, 255, 0.07);
   padding: 1rem 2rem;
-  display: flex; /* FIX: make them show */
+  display: flex;
   border-radius: 1rem;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem; /* spacing between tasks */
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-.task-items:hover {
-  transform: translateY(-2px);
-  background-color: #1e0661;
-  border: 1px solid #dadada7e;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
 }
 
-/* wrapper */
+.task-items:hover {
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
 .checkbox {
   display: inline-flex;
   align-items: center;
@@ -164,42 +155,36 @@ form button:active {
   padding: 0 1rem;
 }
 
-/* keep input accessible but invisible */
 .cb {
-  position: absolute; /* keep it in flow for focus/keyboard */
+  position: absolute;
   opacity: 0;
   width: 20px;
-  height: 20px; /* give it size so it’s focusable */
+  height: 20px;
 }
 
-/* the visual box */
 .box {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   padding: 0.5rem;
-  border: 2px solid #dadada7e;
-  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.1);
-  position: relative;
-  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+  transition: all 0.2s ease;
 }
 
-/* focus ring */
 .cb:focus-visible + .box {
-  outline: 2px solid #8ab4f8;
+  outline: 2px solid #aaa;
   outline-offset: 3px;
 }
 
-/* checked state */
 .cb:checked + .box {
   background: #ffffff;
   border-color: #ffffff;
 }
 
-/* checkmark */
 .box::after {
   content: "";
   position: absolute;
@@ -207,54 +192,57 @@ form button:active {
   top: 5px;
   width: 6px;
   height: 10px;
-  border: solid #0b0d34;
+  border: solid #0a0a0a;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg) scale(0);
   transform-origin: center;
   transition: transform 0.2s ease;
 }
+
 .cb:checked + .box::after {
   transform: rotate(45deg) scale(1);
 }
+
 .task-items:has(.cb:checked) .task-heading {
   text-decoration: line-through;
-  color: #aaaaaa83;
+  color: #777;
 }
 
 .task-items:has(.cb:checked) {
-  background-color: #110b2c;
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
 .task-heading {
-  flex: 1; /* let it grow */
+  flex: 1;
   margin-left: 1rem;
   font-size: 1.2rem;
   word-break: break-word;
+  color: #f0f0f0;
 }
 
 .delete-btn {
   cursor: pointer;
   color: #ff6b6b;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: all 0.2s ease;
   transform: scale(1.3);
+  margin-left: 1rem;
 }
 
 .delete-btn:hover {
   color: #ff3b3b;
   transform: scale(1.8);
 }
-i {
-  margin: 0 1rem;
-}
+
 .editBtn {
-  color: rgb(110, 110, 190);
+  color: #8aa0ff;
   cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: all 0.2s ease;
   transform: scale(1.3);
+  margin-right: 1rem;
 }
 
 .editBtn:hover {
-  color: rgb(187, 187, 219);
+  color: #b8c7ff;
   transform: scale(1.8);
 }
 
@@ -262,6 +250,97 @@ i {
   text-align: center;
   font-size: 1.5rem;
   margin-top: 6rem;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  color: #bdbdbd;
+  display: none;
+}
+
+/* ---------- RESPONSIVENESS ---------- */
+@media (max-width: 1024px) {
+  .todo-app {
+    width: 75vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .todo-app {
+    width: 85vw;
+    margin: 4vw auto;
+    padding: 1.5rem;
+  }
+
+  .input-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+  }
+
+  form input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: small;
+  }
+
+  form button {
+    width: 100%;
+    margin-left: 0;
+    height: auto;
+    font-size: small;
+  }
+
+  .task-items {
+    flex-direction: row;
+  }
+
+  .checkbox {
+    padding: 0;
+    margin-right: 1rem;
+  }
+
+  .task-heading {
+    margin-left: 0;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .todo-app {
+    width: 90vw;
+    padding: 1rem;
+  }
+
+  .todo-app h1 {
+    font-size: 1.5rem;
+  }
+
+  .task-list {
+    max-height: 60vh;
+  }
+
+  .task-heading {
+    font-size: 0.9rem;
+  }
+
+  .checkbox {
+    padding: 0;
+    /* background-color: #950808; */
+  }
+
+  .box {
+    width: 25px;
+    height: 25px;
+  }
+  .box::after {
+    top: 0.2rem;
+    left: 0.5rem;
+  }
+
+  .delete-btn,
+  .editBtn {
+    transform: scale(1.1);
+  }
+  .info {
+    font-size: small;
+  }
 }
